@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
+#include <stddef.h>
 
 /**
  * _printf - Produces output according to a format
@@ -58,14 +59,18 @@ int _printf(const char *format, ...)
  */
 int _puts(char *str)
 {
-	int count = 0;
+	int i = 0;
 
-	while (*str != '\0')
+	if (str == NULL)
 	{
-		_putchar(*str);
-		count++;
-		str++;
+		_puts("(null)");
+		return (i);
+	}
+	while (str[i])
+	{
+		_putchar(str[i]);
+		i++;
 	}
 
-	return (count);
+	return (i);
 }
