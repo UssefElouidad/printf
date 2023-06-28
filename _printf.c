@@ -1,11 +1,9 @@
 #include "main.h"
 #include <stdarg.h>
 #include <stddef.h>
-
 /**
  * _printf - Produces output according to a format
  * @format: The format string
- *
  * Return: The number of characters printed
  */
 int _printf(const char *format, ...)
@@ -34,6 +32,14 @@ int _printf(const char *format, ...)
 					_putchar('%');
 					count++;
 					break;
+				case 'd':
+				case 'i':
+				{
+					int num = va_arg(args, int);
+
+					count += print_int(num);
+					break;
+				}
 				default:
 					_putchar('%');
 					_putchar(*format);
@@ -71,4 +77,38 @@ void _puts(char *str)
 		_putchar(str[i]);
 		i++;
 	}
+}
+
+/* Helper function to print an integer */
+int print_int(int num)
+{
+	int count = 0;
+
+	if (num < 0)
+	{
+		putchar('-');
+		count++;
+		num = -num;
+	}
+	if (num == 0)
+	{
+		putchar('0');
+		count++;
+		return (count);
+	}
+	int rev = 0;
+
+	while (num != 0)
+	{
+		rev = rev * 10 + (num % 10);
+		num /= 10;
+	}
+	while (rev != 0)
+	{
+		putchar('0' + (rev % 10));
+		count++;
+		rev /= 10;
+	}
+
+	return (count);
 }
