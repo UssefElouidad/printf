@@ -57,7 +57,7 @@ int _printf(const char *format, ...)
  *
  * Return: The number of characters written
  */
-int _puts(char *str)
+void _puts(char *str)
 {
 	int i = 0;
 
@@ -71,6 +71,4 @@ int _puts(char *str)
 		_putchar(str[i]);
 		i++;
 	}
-
-	return (i);
 }
