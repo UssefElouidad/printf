@@ -64,7 +64,8 @@ int _puts(char *str)
 	if (str == NULL)
 	{
 		_puts("(null)");
-		return (i);
+		i += 6;
+		return(i);
 	}
 	while (str[i])
 	{
