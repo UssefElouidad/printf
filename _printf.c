@@ -29,6 +29,7 @@ int _printf(const char *format, ...)
 			break;
 			case's':
 				str = va_arg(args, char *);
+				count++;
 				if (str == NULL)
 				{
 					str = "(null)";
