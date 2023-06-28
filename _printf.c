@@ -1,9 +1,11 @@
 #include "main.h"
 #include <stdarg.h>
 #include <stddef.h>
+
 /**
  * _printf - Produces output according to a format
  * @format: The format string
+ *
  * Return: The number of characters printed
  */
 int _printf(const char *format, ...)
@@ -22,7 +24,7 @@ int _printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
-					_putchar((char) va_arg(args, int));
+					_putchar(va_arg(args, int));
 					count++;
 					break;
 				case 's':
@@ -55,7 +57,7 @@ int _printf(const char *format, ...)
  *
  * Return: The number of characters written
  */
-void _puts(char *str)
+int _puts(char *str)
 {
 	int i = 0;
 
@@ -69,4 +71,6 @@ void _puts(char *str)
 		_putchar(str[i]);
 		i++;
 	}
+
+	return (i);
 }
