@@ -24,10 +24,11 @@ int _printf(const char *format, ...)
 			format++;
 			switch (*format)
 			{
-			case'c':
-					count += _putchar(va_arg(args, int));
-			break;
-			case's':
+			case 'c':
+				_putchar(va_arg(args, int));
+				count++;
+				break;
+			case 's':
 				str = va_arg(args, char *);
 				count++;
 				if (str == NULL)
@@ -35,16 +36,16 @@ int _printf(const char *format, ...)
 					str = "(null)";
 					count += _puts(str);
 				}
-			break;
-			case'%':
-					_putchar('%');
-					count++;
-			break;
+				break;
+			case '%':
+				_putchar('%');
+				count++;
+				break;
 			default:
-					_putchar('%');
-					_putchar(*format);
-					count += 2;
-			break;
+				_putchar('%');
+				_putchar(*format);
+				count += 2;
+				break;
 			}
 		}
 		else
