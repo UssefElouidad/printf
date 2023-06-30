@@ -1,17 +1,20 @@
 #include "main.h"
 #include <stdarg.h>
 #include <stddef.h>
+#include <limits.h>
 
 /**
- * print_format_c_s - Produces output according to a format
+ * _printf - Produces output according to a format
  * @format: The format string
- *@args: list of arguments
+ *
  * Return: The number of characters printed
  */
-int print_format_c_s(const char *format, va_list args)
+int _printf(const char *format, ...)
 {
+	va_list args;
 	int count = 0;
 
+	va_start(args, format);
 	if (!format || !format[0])
 		return (-1);
 	while (*format)
@@ -22,30 +25,30 @@ int print_format_c_s(const char *format, va_list args)
 			switch (*format)
 			{
 			case 'c':
-				_putchar(va_arg(args, int));
-				count++;
+				count += print_char(va_arg(args, int));
 				break;
 			case 's':
 				count += _puts(va_arg(args, char *));
 				break;
 			case '%':
-				_putchar('%');
-				count++;
+				count += print_char('%');
 				break;
+			case 'd':
+			case 'i':
+				count += print_integer(va_arg(args, int));
+			break;
 			default:
-				_putchar('%');
-				_putchar(*format);
-				count += 2;
+				count += print_char('%');
+				count += print_char(*format);
 				break;
 			}
 		}
 		else
-		{
-			_putchar(*format);
-			count++;
-		}
+			count += print_char(*format);
 		format++;
 	}
+	va_end(args);
+
 	return (count);
 }
 /**
@@ -71,4 +74,48 @@ int _puts(char *str)
 	}
 
 	return (i);
+}
+
+/**
+ * print_char- printsba character
+ *@c: character to print
+ *Return: 1
+ */
+
+int print_char(int c)
+{
+	_putchar(c);
+	return (1);
+}
+
+/**
+ * print_integer - Prints a given integer
+ * @num: integer to print
+ * Return: Number count
+ */
+int print_integer(int num)
+{
+	int count = 0;
+
+	if (num == -2147483648)
+	{
+		_putchar('-');
+		_putchar('2');
+		print_integer(147483648);
+		return (1);
+	}
+	else if (num < 0)
+	{
+		_putchar('-');
+		count++;
+		num = -num;
+	}
+	if (num / 10)
+	{
+		count += print_integer(num / 10);
+	}
+	_putchar('0' + (num % 10));
+	count++;
+
+	return (count);
 }

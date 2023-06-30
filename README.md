@@ -7,12 +7,6 @@ The printf function in C is used to print formatted output to the standard outpu
 
 The basic syntax for printf is:
 
-#include <stdio.h>
-
-int main(void)
-{
-    printf("format string", argument1, argument2, ...);
-}
 The format string specifies the layout and content of the output, and the arguments provide the values to be printed. The format string can include conversion specifiers, which begin with the percent sign ("%") and indicate how the corresponding argument should be formatted. For example, %d is used to format an integer, %f for a floating-point number, %c for a character, and so on.
 
 Some other important points to keep in mind about printf function:
