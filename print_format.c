@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <limits.h>
 /**
  * print_integer - Prints a given integer
  * @num: integer to print
@@ -9,7 +9,14 @@ static int print_integer(int num)
 {
 	int count = 0;
 
-	if (num < 0)
+	if (num == -2147483648)
+	{
+		_putchar('-');
+		_putchar('2');
+		print_integer(147483648);
+		return (1);
+	}
+	else if (num < 0)
 	{
 		_putchar('-');
 		count++;
