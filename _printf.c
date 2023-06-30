@@ -3,17 +3,15 @@
 #include <stddef.h>
 
 /**
- * _printf - Produces output according to a format
+ * print_format_c_s - Produces output according to a format
  * @format: The format string
- *
+ *@args: list of arguments
  * Return: The number of characters printed
  */
-int _printf(const char *format, ...)
+int print_format_c_s(const char *format, va_list args)
 {
-	va_list args;
 	int count = 0;
 
-	va_start(args, format);
 	if (!format || !format[0])
 		return (-1);
 	while (*format)
@@ -48,7 +46,6 @@ int _printf(const char *format, ...)
 		}
 		format++;
 	}
-	va_end(args);
 	return (count);
 }
 /**
