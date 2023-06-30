@@ -3,17 +3,18 @@
 #include <stddef.h>
 
 /**
- * print_format_c_s - Produces output according to a format
- * @format: The format string
- *@args: list of arguments
- * Return: The number of characters printed
- */
-int print_format_c_s(const char *format, va_list args)
+* _printf - Produces output according to a format
+* @format: The format string
+*
+* Return: The number of characters printed
+*/
+int print_format(const char *format, va_list args)
 {
 	int count = 0;
 
-	if (!format || !format[0])
+	if (format == NULL || (format[0] == '%' && !format[1] == '\0'))
 		return (-1);
+
 	while (*format)
 	{
 		if (*format == '%')
@@ -21,22 +22,23 @@ int print_format_c_s(const char *format, va_list args)
 			format++;
 			switch (*format)
 			{
-			case 'c':
-				_putchar(va_arg(args, int));
-				count++;
-				break;
-			case 's':
-				count += _puts(va_arg(args, char *));
-				break;
-			case '%':
-				_putchar('%');
-				count++;
-				break;
-			default:
-				_putchar('%');
-				_putchar(*format);
-				count += 2;
-				break;
+				case 'c':
+					_putchar(va_arg(args, int));
+					count++;
+					break;
+				case 's':
+					count += _puts(va_arg(args, char *));
+					break;
+				
+				case '%':
+					_putchar('%');
+					count++;
+					break;
+				default:
+					_putchar('%');
+					_putchar(*format);
+					count += 2;
+					break;
 			}
 		}
 		else
@@ -49,11 +51,11 @@ int print_format_c_s(const char *format, va_list args)
 	return (count);
 }
 /**
- * _puts - Writes a string to stdout
- * @str: The string to write
- *
- * Return: The number of characters written
- */
+* _puts - Writes a string to stdout
+* @str: The string to write
+*
+* Return: The number of characters written
+*/
 int _puts(char *str)
 {
 	int i = 0;
@@ -72,3 +74,5 @@ int _puts(char *str)
 
 	return (i);
 }
+
+
